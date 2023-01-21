@@ -2,9 +2,9 @@
 by Itay Lamprecht and Eran Avnery
 This repository is part of a final project in the Technion's course 046211 - Deep Learning
 
-INSERT IMAGES
+![alt text](https://github.com/itlamp/Aug-Diff/blob/main/assets/intro_pic.JPG?raw=True)
 
-# generative augmentations to improve preformance of NN's
+# Generative augmentations to improve preformance of NN's
 
 In our project, we aim to demonstrate the effectiveness of generative aug-
 mentation using diffusion models on small datasets.
@@ -65,7 +65,7 @@ python Main.py --gen_path <path> --stl_train_path <path> --stl_test_path <path> 
 
 ## Results
 Our results:
-<!-- ![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true) -->
+![alt text](https://github.com/itlamp/Aug-Diff/blob/main/assets/Results.jpeg?raw=True)
 
 ## Credits:
  - The NN being trained is taken from our TA's github for the Technions 046211 course - https://github.com/taldatech/ee046211-deep-learning. Specifically, from tutorial number 6. 
