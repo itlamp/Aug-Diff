@@ -45,49 +45,5 @@ def main():
         
     train_net(train_dataloader,test_dataloader)
 
-    # print(f"-----------------generated alone------------------")
-    # train_dataloader = Generated_Train(generated_train_path, transforms_light)
-    # train_dataloader.update_transform()
-    # train_net(train_dataloader,test_dataloader)
-
-
-    # print(f"-----------------generated augmentations------------------")
-    # train_dataloader = Generated_Train(generated_train_path, transforms_strong)
-    # train_dataloader.update_transform()
-    # train_net(train_dataloader,test_dataloader)
-
-
-    # print(f"-----------------both 0.1 alone------------------")
-    # train_dataloader = Both_Train(real_train_path, generated_train_path, 0.1, transforms_light)
-    # train_dataloader.update_transform()
-    # train_net(train_dataloader,test_dataloader)
-
-
-    # print(f"-----------------both 0.5 alone------------------")
-    # train_dataloader = Both_Train(real_train_path, generated_train_path, 0.5, transforms_light)
-    # train_dataloader.update_transform()
-    # train_net(train_dataloader,test_dataloader)
-
-    # print(f"-----------------both 1 alone------------------")
-    # train_dataloader = Both_Train(real_train_path, generated_train_path, 1, transforms_light)
-    # train_dataloader.update_transform()
-    # train_net(train_dataloader,test_dataloader)
-
-    # print(f"-----------------both 0.1 augmented------------------")
-    # train_dataloader = Both_Train(real_train_path, generated_train_path, 0.1, transforms_strong)
-    # train_dataloader.update_transform()
-    # train_net(train_dataloader,test_dataloader)
-
-    # print(f"-----------------both 0.5 augmented------------------")
-    # train_dataloader = Both_Train(real_train_path, generated_train_path, 0.5, transforms_strong)
-    # train_dataloader.update_transform()
-    # train_net(train_dataloader,test_dataloader)
-
-
-    # print(f"-----------------both 1 augmented------------------")
-    # train_dataloader = Both_Train(real_train_path, generated_train_path, 1, transforms_strong)
-    # train_dataloader.update_transform()
-    # train_net(train_dataloader,test_dataloader)
-
 if __name__ == "__main__":
     main()
