@@ -6,7 +6,7 @@ import torch.nn as nn
 import torchvision.transforms as transforms
 
 class StlCNN(nn.Module):
-    """CNN for the CIFAR-10 Datset"""
+    """CNN for the stl Datset"""
 
     def __init__(self):
         """CNN Builder."""

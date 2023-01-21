@@ -2,8 +2,10 @@ name: augdiff
 channels:
   - defaults
 dependencies:
+  - pip=22.3.1=py310h06a4308_0
   - python=3.10.9=h7a1cb2a_0
   - pip:
+    - argparse==1.4.0
     - numpy==1.24.1
     - pandas==1.5.3
     - torch==1.13.1
