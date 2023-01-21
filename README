@@ -1,0 +1,41 @@
+# Aug-Diff
+by Itay Lamprecht and Eran Avnery
+This repository is part of a final project in the Technion's course 046211 - Deep Learning
+
+INSERT IMAGES
+
+## generative augmentations to improve preformance of NN's
+
+הסברים הסברים על מה שאנחנו עושים
+
+הסברים על תוצאות
+
+### Prerequisites
+ - Please run:
+    
+    conda env create -f environment.yml
+    conda activate augdiff
+
+### Datasets
+STL dataset:
+ - The stl dataset was downloaded using the help of: https://github.com/mttk/STL10/blob/master/stl10_input.py. 
+ 
+ -  Images generated using code in the repository https://github.com/CompVis/stable-diffusion. 
+
+To use our code, please make sure that all of the images are in a file with the corresponding name. For example, if the stl images in the train set that are saved in <stl_training_path>, images of dogs should be at '<stl_train_path>/dog. Same goes for generated images, images of airpanes should be at '<gen_path>/airplane'. The labels are:
+
+'airplane', 'bird', 'car', 'cat', 'deer', 'dog', 'horse', 'monkey', 'ship', 'truck'
+
+### Training:
+#### For use with IDE:
+After the stl dataset is downloaded, and the augmented images have been created run the following:
+
+
+#### For use on google colab, please use the ipynb notebook:
+
+
+
+Credits:
+ - The NN being trained is taken from our TA's github for the Technions 046211 course - https://github.com/taldatech/ee046211-deep-learning. Specifically, from tutorial number 6. 
+
+ - Images generated using code in the repository https://github.com/CompVis/stable-diffusion

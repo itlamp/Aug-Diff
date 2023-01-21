@@ -1,0 +1,11 @@
+name: augdiff
+channels:
+  - defaults
+dependencies:
+  - python=3.10.9=h7a1cb2a_0
+  - pip:
+    - numpy==1.24.1
+    - pandas==1.5.3
+    - torch==1.13.1
+    - torchvision==0.14.1
+prefix: /opt/conda/envs/augdiff

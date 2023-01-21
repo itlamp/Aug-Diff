@@ -7,7 +7,6 @@ import pandas as pd
 from torchvision.io import read_image
 import glob
 import numpy as np
-import cv2
  
 from pathlib import Path
 class Generated_Train(Dataset):

@@ -2,14 +2,12 @@ from Network import StlCNN
 
 # imports for the tutorial
 import numpy as np
-import matplotlib.pyplot as plt
 import time
 import os
 
 # pytorch
 import torch
 import torch.nn as nn
-import torchvision.transforms as transforms
 
 def train_net(trainset, testset):
     # hyper-parameters
