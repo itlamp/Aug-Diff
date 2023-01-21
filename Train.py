@@ -28,9 +28,9 @@ def train_net(trainset, testset):
     criterion = nn.CrossEntropyLoss()
 
     # build our model and send it to the device
-    model = StlCNN().to(device) # no need for parameters as we alredy defined them in the class
+    model = StlCNN().to(device)
 
-    # optimizer - SGD, Adam, RMSProp...
+    # optimizer
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=0.01)
 
     # function to calcualte accuracy of the model
@@ -39,7 +39,6 @@ def train_net(trainset, testset):
         total_correct = 0
         total_images = 0
         running_loss = 0.0
-        confusion_matrix = np.zeros([10,10], int)
         with torch.no_grad():
             for data in dataloader:
                 images, labels = data
@@ -50,8 +49,6 @@ def train_net(trainset, testset):
                 _, predicted = torch.max(outputs.data, 1)
                 total_images += labels.size(0)
                 total_correct += (predicted == labels).sum().item()
-                # for i, l in enumerate(labels):
-                #     confusion_matrix[l.item(), predicted[i].item()] += 1 
                 running_loss += loss.data.item()
             running_loss /= len(trainloader)
         model_accuracy = total_correct / total_images * 100
@@ -63,18 +60,16 @@ def train_net(trainset, testset):
         model.train()  # put in training mode
         running_loss = 0.0
         epoch_time = time.time()
-        for i, data in enumerate(trainloader, 0):
+        for _ , data in enumerate(trainloader, 0):
             # get the inputs
             inputs, labels = data
             # send them to device
             inputs = inputs.to(device)
             labels = labels.to(device)
-            # augmentation with `kornia` happens here inputs = aug_list(inputs)
 
             # forward + backward + optimize
             outputs = model(inputs)  # forward pass
             loss = criterion(outputs, labels)  # calculate the loss
-            # always the same 3 steps
             optimizer.zero_grad()  # zero the parameter gradients
             loss.backward()  # backpropagation
             optimizer.step()  # update parameters
@@ -99,7 +94,7 @@ def train_net(trainset, testset):
         print(log)
         
         # save model
-        if epoch % 20 == 0:
+        if epoch % 50 == 0:
             print('==> Saving model ...')
             state = {
                 'net': model.state_dict(),
@@ -107,6 +102,6 @@ def train_net(trainset, testset):
             }
             if not os.path.isdir('checkpoints'):
                 os.mkdir('checkpoints')
-            torch.save(state, './checkpoints/cifar_cnn_ckpt.pth')
+            torch.save(state, './checkpoints/stl_cnn_ckpt.pth')
 
     print('==> Finished Training ...')
