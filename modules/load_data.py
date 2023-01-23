@@ -25,16 +25,15 @@ class Generated_Train(Dataset):
     # returns img and label
     def __getitem__(self, idx):
         label_list = ['airplane','bird','car','cat','deer','dog','horse','monkey','ship','truck']
-        index = int(np.floor(idx/500))
-        label = label_list[index]
-        img_path = glob.glob(self.img_dir + '/' + label + '/*.png')[idx%500]
+        label = int(np.floor(idx/500))
+        label_name = label_list[label]
+        img_path = glob.glob(self.img_dir + '/' + label_name + '/*.png')[idx%500]
         img = read_image(img_path)
         if self.transform:
             img = self.transform(img)
-        return img, index 
+        return img, label
 
 
-## Similar to generated dataset
 class Real_Test(Dataset):
     """"Torch Dataloader for test images only"""
     def __init__(self, img_dir, transform=None):
@@ -42,6 +41,7 @@ class Real_Test(Dataset):
         self.transform = transform
         self.update_transform()
 
+    # After dataset is created, normalizes the dataset according to emperical distribution
     def update_transform(self):
         mean, std = get_stats(self)
         self.transforms = transforms.Compose([self.transform,transforms.Normalize(mean,std)])
@@ -49,15 +49,18 @@ class Real_Test(Dataset):
     def __len__(self):
         return 800*10
 
+    # Our __getitem__ assumes that all of the images are in a file with the corresponding name. 
+    # idx 0-799 corresponds to airplane, 800-1599 to bird, etc.
+    # returns img and label
     def __getitem__(self, idx):
         label_list = ['airplane','bird','car','cat','deer','dog','horse','monkey','ship','truck']
-        index = int(np.floor(idx/800))
-        label = label_list[index]
-        img_path = glob.glob(self.img_dir + '/' + label + '/*.png')[idx%800]
+        label = int(np.floor(idx/800))
+        label_name = label_list[label]
+        img_path = glob.glob(self.img_dir + '/' + label_name + '/*.png')[idx%800]
         img = read_image(img_path)
         if self.transform:
             img = self.transform(img)
-        return img, index
+        return img, label
     
 class Both_Train(Dataset):
     """"Torch Dataloader for generated and original train images"""
@@ -85,18 +88,18 @@ class Both_Train(Dataset):
     # returns img and label
     def __getitem__(self, idx):
         label_list = ['airplane','bird','car','cat','deer','dog','horse','monkey','ship','truck']
-        label_num = int(np.floor(idx/self.class_size))
-        label = label_list[label_num]
+        label = int(np.floor(idx/self.class_size))
+        label_name = label_list[label]
         if idx%self.class_size < 500:
-            path = self.real_dir + '/' + label + '/*.png'
+            path = self.real_dir + '/' + label_name + '/*.png'
             img_path = glob.glob(path)[idx%self.class_size]
         else:
-            path = self.gen_dir + '/' + label + '/*.png'
+            path = self.gen_dir + '/' + label_name + '/*.png'
             img_path = glob.glob(path)[idx%self.class_size-500]
         img = read_image(img_path)
         if self.transform:
             img = self.transform(img)
-        return img, label_num
+        return img, label
 
 ## receives a dataset and returns its mean and std
 def get_stats(image_data):
@@ -113,7 +116,7 @@ def get_stats(image_data):
         images, _ = next(iter(loader))
         # shape of images = [b,c,w,h]
         images = images.to(torch.float32)
-        mean, std = images.mean([0,2,3]), images.std([0,2,3])
+        mean, std = images.mean([0,2,3]), images.std([0,2,3]) # don't take mean over channels
         return mean, std
     
     ## calculate meand and std over whole dataset

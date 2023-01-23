@@ -5,7 +5,7 @@ This repository is part of a final project in the Technion's course 046211 - Dee
 
 ![alt text](https://github.com/itlamp/Aug-Diff/blob/main/assets/intro_pic.JPG?raw=True)
 
-# Generative augmentations using diffusion to improve preformance of NN's
+# Generative augmentations using diffusion to improve performance of NN's
 
 In our project, we aim to demonstrate the effectiveness of generative augmentation using diffusion models on small datasets.
 
@@ -27,12 +27,12 @@ We train a classification CNN over the STL dataset in multiple settings:
 
 ## Datasets
 STL dataset:
- - The stl dataset was downloaded using the help of: https://github.com/mttk/STL10/blob/master/stl10_input.py. 
+ - The stl dataset was downloaded using the help of: https://github.com/mttk/STL10/. 
  
  Generated images:
  -  Images generated using code in the repository https://github.com/CompVis/stable-diffusion, using plms sampler and v1.4 checkpoint.
 
-To use our code, please make sure that all of the images are in a file with the corresponding name. For example, if the stl images in the train set that are saved in <stl_training_path>, images of dogs should be at '<stl_train_path>/dog. Same goes for generated images, images of airpanes should be at '<gen_path>/airplane'. The labels are:
+To use our code, please make sure that all of the images are in a file with the corresponding name. For example, if the stl images in the train set that are saved in <stl_train_path>, images of dogs should be at '<stl_train_path>/dog. Same goes for generated images, images of airpanes should be at '<gen_path>/airplane'. The labels are:
 
 ```
 'airplane', 'bird', 'car', 'cat', 'deer', 'dog', 'horse', 'monkey', 'ship', 'truck'
@@ -66,7 +66,8 @@ python Main.py --gen_path <path> --stl_train_path <path> --stl_test_path <path> 
 ```
 
 ## Results
-Our results:
+Our main results are illustrated in the following graph. We show that adding more augmentations to the original dataset enhances performence on the test set.
+
 ![alt text](https://github.com/itlamp/Aug-Diff/blob/main/assets/Results.png?raw=True)
 
 ## Credits:

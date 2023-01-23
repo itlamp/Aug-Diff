@@ -1,4 +1,4 @@
-from Network import StlCNN
+from modules.Network import StlCNN
 
 # imports for the tutorial
 import numpy as np
@@ -93,15 +93,4 @@ def train_net(trainset, testset):
         # log += f"Epoch Time: {epoch_time:.2f} secs"
         print(log)
         
-        # save model
-        if epoch % 50 == 0:
-            print('==> Saving model ...')
-            state = {
-                'net': model.state_dict(),
-                'epoch': epoch,
-            }
-            if not os.path.isdir('checkpoints'):
-                os.mkdir('checkpoints')
-            torch.save(state, './checkpoints/stl_cnn_ckpt.pth')
-
     print('==> Finished Training ...')
